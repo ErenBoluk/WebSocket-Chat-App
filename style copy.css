@@ -3,6 +3,8 @@
 * {
     user-select: none;
 }
+
+
 body {
     background-color: #111;
     font-family: 'Poppins', sans-serif !important;
@@ -155,21 +157,8 @@ body {
 .msg-info-text {
     color: #222;
     margin-left: 5px;
+    max-inline-size: 40%;
     overflow-wrap: break-word;
     font-weight: 600;
 
 }
-
-@media screen and (max-width: 768px) {
-    .msg-text {
-        max-inline-size: 100%;
-    }
-
-    .msg-info-text {
-        max-inline-size: 100%;
-    }
-    .send-icon{
-        display: none;
-    }
-}
-    
