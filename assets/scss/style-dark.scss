@@ -40,6 +40,15 @@ body.dark {
         background-color: #222;
         color: #fff;
     }
+    .loader{
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #333;
+    }
+
+
+    .msg-info.system{
+        color: rgba(255, 0, 0, 0.714) !important;
+    }
     ::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #000000;

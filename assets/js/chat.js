@@ -1,12 +1,15 @@
 const chatBox = document.getElementById("chat-box");
 const chatContainer = document.getElementById("chat-container");
-const connText = document.getElementById("conn-text");
+const systemAlerts = document.getElementById("system-alerts");
 
 window.onload = function () {
 
     var darkModeEnabled = true;
     const themeBtn = $("#theme-toggle");
     const themeIcon = $("#theme-icon");
+
+    chatBox.style.display = "none";
+    chatContainer.style.display = "none";
 
     themeBtn.click(function () {
         darkModeEnabled = !darkModeEnabled;
@@ -21,17 +24,25 @@ window.onload = function () {
 
 };
 
+
 var conn = new WebSocket('ws://localhost:8080');
 console.log(conn);
 
 conn.onopen = function (e) {
-    connText.remove();
+    loader.remove();
+
     chatContainer.append(prepareInfoText("[ Connection Success ] Welcome to the chat!"));
     console.log(e.data);
 };
 conn.onclose = function (e) {
-    chatContainer.append(prepareInfoText("[ Connection lost! ] There seems to be a system issue.!"));
+    loader.remove();;
+    let msg = prepareInfoText("[ Connection lost! ] There seems to be a system issue !", true);
+    systemAlerts.append(msg);
+    setTimeout(function () {
+        msg.remove();
+    }, 20000);
 };
+
 conn.onmessage = function (e) {
     let data = JSON.parse(e.data);
     console.log(data);
@@ -42,11 +53,11 @@ conn.onmessage = function (e) {
     }
     if (data.type == "message") {
         console.log(data.data);
-        chatContainer.append(prepareMessage(data.data, data.from, true));
+        systemAlerts.append(prepareMessage(data.data, data.from, true));
         scrollChatToBottom();
     }
     if (data.type == "join") {
-        chatContainer.append(prepareInfoText(` user ${data.id} joinded chat !`));
+        chatContainer.append(prepareInfoText(` user ${data.id} joined chat !`));
         scrollChatToBottom();
     }
 };
@@ -54,16 +65,27 @@ conn.onmessage = function (e) {
 $('#msg').submit(function (e) {
     e.preventDefault();
     var msg = document.getElementById("message-box").value;
-    if (msg == "") return;
-    
+    if (msg == "") {
+        let msg = prepareInfoText(" Message cannot be empty. ", true);
+        systemAlerts.append(msg);
+        setTimeout(function () {
+            msg.remove();
+        }, 3000);
+        return;
+    }
+
     if (conn['readyState'] == 1) {
         chatContainer.append(prepareMessage(msg, 'me', false));
         conn.send(msg);
         $(this).trigger('reset');
-        scrollChatToBottom();
-    }else{
-        chatContainer.append(prepareInfoText(" Message could not be delivered !"));
+    } else {
+        let msg = prepareInfoText(" Message could not be delivered ( Could not connect to the server ! )", true);
+        systemAlerts.append(msg);
+        setTimeout(function () {
+            msg.remove();
+        }, 3000);
     }
+    scrollChatToBottom();
 
 });
 
@@ -85,11 +107,11 @@ function scrollChatToBottom() {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-function prepareInfoText(message) {
+function prepareInfoText(message, system = false) {
     let msgDiv = document.createElement("div");
-    msgDiv.className = "msg-info";
+    msgDiv.className = "msg-info  ";
     let msgText = document.createElement("span");
-    msgText.className = "msg-info-text";
+    msgText.className = "msg-info-text " + (system ? 'system' : 'normal');
     msgText.innerText = message;
     msgDiv.appendChild(msgText);
     return msgDiv;

@@ -15,7 +15,7 @@ body {
 
 }
 
-.btn{
+.btn {
     font-family: 'Poppins', sans-serif !important;
     border: none;
     outline: none;
@@ -27,6 +27,7 @@ body {
     border-radius: 0;
 
 }
+
 .send-btn {
     background-color: #4478E9;
     color: #fff;
@@ -48,6 +49,7 @@ body {
     outline: 0;
     border: 0;
 }
+
 ::placeholder {
     font-family: 'Poppins', sans-serif !important;
     color: #999;
@@ -61,7 +63,8 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 5px;;
+    margin: 5px;
+    ;
     padding: 15px 0;
     padding-bottom: 20px;
     margin: 5px;
@@ -96,7 +99,7 @@ body {
     flex-direction: column;
 }
 
-.message .msg-text  {
+.message .msg-text {
     padding: 10px 15px;
     border-radius: 10px;
     margin-left: 5px;
@@ -104,14 +107,17 @@ body {
     user-select: text;
 
 }
-.message.incoming .msg-text{
+
+.message.incoming .msg-text {
     background-color: #2965E6;
     color: #fff;
 }
-.message.outcoming .msg-text{
+
+.message.outcoming .msg-text {
     background-color: #FFFFFF;
     color: #333;
 }
+
 .outcoming {
     align-items: flex-end;
 }
@@ -168,36 +174,96 @@ body {
     flex-direction: column;
 }
 
+
 .msg-info-text {
-    color: #cdcdcd;
     margin-left: 5px;
     overflow-wrap: break-word;
-    font-weight: 600;
 }
-
-.theme-btn{
+.msg-info-text.system{
+    padding: 14px 15px;
+    border: 1px solid;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    width: 100%;
+    text-align: center;
+}
+.msg-info-text.normal{
+    color: #8d8d8d;
+}
+.theme-btn {
     position: absolute;
     right: 0;
     bottom: 0;
     z-index: 100;
-    padding: 5px 10px ;
+    padding: 5px 10px;
     border-radius: 10px;
     font-size: 1.4rem;
-    background-color:  #fff;
-    color:#333;
+    background-color: #fff;
+    color: #333;
     margin: 10px;
 }
-.theme-btn span.bi-moon{
+
+.theme-btn span.bi-moon {
     position: relative;
     left: 2px;
     font-size: 1.4rem;
 }
+
 @media (max-width: 768px) {
-    .send-icon{
+    .send-icon {
         display: none;
     }
-    .theme-btn{
+
+    .theme-btn {
         top: 0;
         bottom: auto;
     }
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+#loader{
+    display: flex;
+    flex-direction: column;
+}
+.loader-text{
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.system-alerts{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
