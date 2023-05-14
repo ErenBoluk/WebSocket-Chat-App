@@ -5,9 +5,13 @@
     <title>Klev Chat</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-dark.css">
 </head>
 
-<body>
+<body class="dark">
+    <button id="theme-toggle" class="btn theme-btn">
+        <span  class=" bi bi-moon" id="theme-icon"></span>
+    </button>
     <div id="chat-box">
         <div id="chat-container">
             <div class="msg-info" id="conn-text">
@@ -24,7 +28,7 @@
         <div class="input-group">
 
             <input type="text" id="message-box" class="msg-box" placeholder="Type your message here" autocomplete="off">
-            <button type="submit" class="send-btn"> <i class="bi bi-send send-icon"></i> Send</button>
+            <button type="submit" class="btn send-btn"> <i class="bi bi-send send-icon"></i> Send</button>
         </div>
 
     </form>

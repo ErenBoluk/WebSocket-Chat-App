@@ -2,42 +2,55 @@
 
 * {
     user-select: none;
+    box-sizing: border-box;
 }
+
+
 body {
-    background-color: #111;
+    background-color: #F4F7FA;
     font-family: 'Poppins', sans-serif !important;
     font-size: 16px;
     line-height: 1.5;
-    color: #fff;
+    color: #000;
+
 }
 
-.send-btn {
-    background-color: #222;
-    ;
+.btn{
+    font-family: 'Poppins', sans-serif !important;
     border: none;
     outline: none;
-    font-size: 1rem;
-    color: #fff;
+    background: #999;
     line-height: 1.5;
-    padding: 10px 15px;
-    border-radius: 0;
-    margin-left: 5px;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 1rem;
+    border-radius: 0;
+
+}
+.send-btn {
+    background-color: #4478E9;
+    color: #fff;
+    padding: 10px 15px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
 .send-btn:hover {
-    background-color: #333;
+    background-color: #4580ff;
 }
 
 .msg-box {
     line-height: 1.5;
     font-size: 1rem;
-    background-color: #222;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     padding: 10px 15px;
     outline: 0;
     border: 0;
+}
+::placeholder {
+    font-family: 'Poppins', sans-serif !important;
+    color: #999;
 }
 
 .input-group {
@@ -48,8 +61,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 5px;
-    ;
+    margin: 5px;;
     padding: 15px 0;
     padding-bottom: 20px;
     margin: 5px;
@@ -84,18 +96,22 @@ body {
     flex-direction: column;
 }
 
-.message .msg-text {
-    background-color: #222;
+.message .msg-text  {
     padding: 10px 15px;
-    color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-left: 5px;
-    max-inline-size: 40%;
     overflow-wrap: break-word;
     user-select: text;
 
 }
-
+.message.incoming .msg-text{
+    background-color: #2965E6;
+    color: #fff;
+}
+.message.outcoming .msg-text{
+    background-color: #FFFFFF;
+    color: #333;
+}
 .outcoming {
     align-items: flex-end;
 }
@@ -105,24 +121,24 @@ body {
     bottom: 0;
     left: 0;
     margin: 5px;
-    color: #333;
+    color: #999;
     font-size: 12px;
 }
 
 #conn-id {
-    color: #fff;
+    color: #333;
     font-size: 12px;
     margin-left: 5px;
 }
 
 #conn-ip {
-    color: #fff;
+    color: #333;
     font-size: 12px;
     margin-left: 5px;
 }
 
 .msg-author {
-    color: #444;
+    color: #999;
     font-size: 13px;
     margin: 5px 3px 3px 5px;
     margin-left: 5px;
@@ -131,16 +147,16 @@ body {
 
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #000000;
+    background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar {
     width: 6px;
-    background-color: #000000;
+    background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #F5F5F5;
+    background-color: #000000;
 }
 
 .msg-info {
@@ -153,23 +169,35 @@ body {
 }
 
 .msg-info-text {
-    color: #222;
+    color: #cdcdcd;
     margin-left: 5px;
     overflow-wrap: break-word;
     font-weight: 600;
-
 }
 
-@media screen and (max-width: 768px) {
-    .msg-text {
-        max-inline-size: 100%;
-    }
-
-    .msg-info-text {
-        max-inline-size: 100%;
-    }
+.theme-btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    padding: 5px 10px ;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    background-color:  #fff;
+    color:#333;
+    margin: 10px;
+}
+.theme-btn span.bi-moon{
+    position: relative;
+    left: 2px;
+    font-size: 1.4rem;
+}
+@media (max-width: 768px) {
     .send-icon{
         display: none;
     }
+    .theme-btn{
+        top: 0;
+        bottom: auto;
+    }
 }
-    

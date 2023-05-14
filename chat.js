@@ -4,6 +4,19 @@ const connText = document.getElementById("conn-text");
 
 window.onload = function () {
     scrollChatToBottom();
+
+    var darkModeEnabled = true;
+    const themeBtn = $("#theme-toggle");
+    const themeIcon = $("#theme-icon");
+
+    themeBtn.click(function () {
+        darkModeEnabled = !darkModeEnabled;
+
+        $("body").toggleClass("dark");
+
+        themeIcon.toggleClass('bi-sun', !darkModeEnabled).toggleClass('bi-moon', darkModeEnabled);
+
+    });
 };
 
 var conn = new WebSocket('ws://localhost:8080');
