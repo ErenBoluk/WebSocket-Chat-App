@@ -3,7 +3,6 @@ const chatContainer = document.getElementById("chat-container");
 const connText = document.getElementById("conn-text");
 
 window.onload = function () {
-    scrollChatToBottom();
 
     var darkModeEnabled = true;
     const themeBtn = $("#theme-toggle");
@@ -17,6 +16,9 @@ window.onload = function () {
         themeIcon.toggleClass('bi-sun', !darkModeEnabled).toggleClass('bi-moon', darkModeEnabled);
 
     });
+
+    scrollChatToBottom();
+
 };
 
 var conn = new WebSocket('ws://localhost:8080');
