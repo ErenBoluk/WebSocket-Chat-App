@@ -22,6 +22,7 @@ window.onload = function () {
 };
 
 var conn = new WebSocket('ws://localhost:8080');
+console.log(conn);
 
 conn.onopen = function (e) {
     connText.remove();
@@ -54,10 +55,16 @@ $('#msg').submit(function (e) {
     e.preventDefault();
     var msg = document.getElementById("message-box").value;
     if (msg == "") return;
-    chatContainer.append(prepareMessage(msg, 'me', false));
-    scrollChatToBottom();
-    $(this).trigger('reset');
-    conn.send(msg);
+    
+    if (conn['readyState'] == 1) {
+        chatContainer.append(prepareMessage(msg, 'me', false));
+        conn.send(msg);
+        $(this).trigger('reset');
+        scrollChatToBottom();
+    }else{
+        chatContainer.append(prepareInfoText(" Message could not be delivered !"));
+    }
+
 });
 
 function prepareMessage(message, author, type) {
