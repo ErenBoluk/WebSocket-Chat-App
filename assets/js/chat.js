@@ -8,8 +8,6 @@ window.onload = function () {
     const themeBtn = $("#theme-toggle");
     const themeIcon = $("#theme-icon");
 
-    chatBox.style.display = "none";
-    chatContainer.style.display = "none";
 
     themeBtn.click(function () {
         darkModeEnabled = !darkModeEnabled;
@@ -53,7 +51,7 @@ conn.onmessage = function (e) {
     }
     if (data.type == "message") {
         console.log(data.data);
-        systemAlerts.append(prepareMessage(data.data, data.from, true));
+        chatContainer.append(prepareMessage(data.data, data.from, true));
         scrollChatToBottom();
     }
     if (data.type == "join") {
